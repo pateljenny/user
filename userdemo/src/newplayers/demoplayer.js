@@ -9,7 +9,7 @@ class demoplayer extends Component {
     state = {
         title: 'player details',
         datas: [
-            { fname: "jenny", lname: "patel", score: "56" },
+            { fname: "jenny", lname: "patel", score: 56 },
             { fname: "kiran", lname: "virani", score: "26" },
             { fname: "angle", lname: "dream",  score: "36" }
         ],
@@ -84,9 +84,23 @@ class demoplayer extends Component {
 
         this.refs.fname.focus();
     }
+    sortdata = () => {
+        let data = this.state.datas
+        return data.sort((a, b) => {
+        if (a.score === b.score) {
+        let alastname = a.lname.toLowerCase()
+        let Blastname = b.lname.toLowerCase()
+        if (alastname < Blastname) {
+        return - 1
+        }
+        } else {
+        return parseInt(a.score) - parseInt(b.score)
+        }
+        })
+        }
 
     render() {
-        let datas = this.state.datas;
+        let datas = this.sortdata();
         console.log(this.state)
         return (
             <div className="App">
